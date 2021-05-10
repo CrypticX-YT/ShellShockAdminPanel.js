@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         [🔥CRYPTICTECH ADMIN PANEL!!🔥] ShellShockers Hack that works by CrypticX
+// @name         [🔥CRYPTICTECH ADMIN PANEL!!🔥] ShellShockers Invisibility & Speed Hack that works by CrypticX
 // @namespace    https://greasyfork.org/en/users/745409
-// @version      1.4.2
-// @description  ENJOY An AMIN PANEL THAT WORKS 100%
+// @version      1.4.7
+// @description  INVISIBILITY, EGG SIZE, SPEED & MORE!! ENJOY An AMIN PANEL THAT WORKS 100%
 // @author       CrypticX
 // @match        https://shellshock.io/*
 // @match        https://eggcombat.com/*
@@ -32,9 +32,6 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.5/dat.gui.min.js
 // ==/UserScript==
 
-
-/*VERSION:0.39.7*/
- 
 
 
 var player = document.createElement('audio');
@@ -97,10 +94,10 @@ document.body.appendChild(player);
         ESP:true,
         FOG:0,
         Creator: "CrypticX",
-        FOV:1,
+        Speed:1,
         Recoil:0,
         aimbot:true,
-        Invisibility:5,
+        Invisibility:1,
         ToggleAim:'ShiftLeft',
         EggSize:1,
     }
@@ -110,13 +107,15 @@ document.body.appendChild(player);
             window.settings.myName = document.getElementsByClassName("ss_field fullwidth")[0].value;
         }
     },1000)
-    document.addEventListener('keydown', (e)=>{
-        if(e.code===window.settings.ToggleAim) window.settings.aimbot=true;
+    
+      document.addEventListener('keydown', (e)=>{
+       if(e.code===window.settings.ToggleAim) window.settings.aimbot=true;
     })
 
-    document.addEventListener('keyup', (e)=>{
-        if(e.code===window.settings.ToggleAim) window.settings.aimbot=false;
+      document.addEventListener('keyup', (e)=>{
+       if(e.code===window.settings.ToggleAim) window.settings.aimbot=false;
     })
+ 
 
     Array.prototype.push = function(data) {
 
@@ -279,9 +278,9 @@ document.body.appendChild(player);
             lastShotSpread = myPlayer.shotSpread;
 
             if(!window.settings.HasPwned){
-                Object.defineProperty(window.myPlayer.scene.cameras[0], 'fov',  {
+                Object.defineProperty(window.myPlayer.scene.cameras[0], 'Speed',  {
                     get: () => {
-                        return window.settings.FOV;
+                        return window.settings.Speed;
                     }
                 });
                 window.settings.HasPwned=true;
@@ -316,20 +315,20 @@ document.body.appendChild(player);
         guiSettings.add(window.settings, 'HasPwned').onChange((e)=>{
             window.settings.HasPwned=e;
         });
-        guiSettings.add(window.settings, 'ESP').onChange((e)=>{
-            window.settings.ESP=e;
-        });
         guiSettings.add(window.settings, 'WireFrame').onChange((e)=>{
             window.settings.WireFrame=e;
         });
-        guiSettings.add(window.settings, 'Invisibility',1,5).step(1).onChange((e)=>{
+        guiSettings.add(window.settings, 'ESP').onChange((e)=>{
+            window.settings.ESP=e;
+        });
+        guiSettings.add(window.settings, 'Invisibility',1,5).step(0.1).onChange((e)=>{
             window.settings.Invisibility=e;
         });
         guiSettings.add(window.settings, 'EggSize',1,20).step(1).onChange((e)=>{
             window.settings.EggSize=e;
         });
-        guiSettings.add(window.settings, 'FOV', 0,4).step(0.1).onChange((e)=>{
-            window.settings.FOV=e;
+        guiSettings.add(window.settings, 'Speed', 1,3).step(0.1).onChange((e)=>{
+            window.settings.Speed=e;
         });
         guiSettings.add(window.settings, 'FOG',0,10).step(1).onChange((e)=>{
             window.settings.FOG=e;
@@ -343,5 +342,3 @@ document.body.appendChild(player);
         return gui;
     }
 })();
-
-
